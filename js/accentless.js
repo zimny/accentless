@@ -1,11 +1,11 @@
 /**
- * Created by Accent less.
  * User: Zimny
  * Date: 10.04.11
  * Time: 18:16
  */
 /*
-áàâäåÁÃÄÅÀÂçÇêéëèÊËÉÈïíîìÍÌÎÏñÑôöòõóÓÔÕÖÒšŠúüûùÙÚÜÛýÝžŽ === aaaaaAAAAAAcCeeeeEEEEiiiiIIIInNoooooOOOOOsSuuuuUUUUyYzZ
+* This condition should be true - if else then there is probably an error with char codes table.
+* áàâäåÁÃÄÅÀÂçÇêéëèÊËÉÈïíîìÍÌÎÏñÑôöòõóÓÔÕÖÒšŠúüûùÙÚÜÛýÝžŽ === aaaaaAAAAAAcCeeeeEEEEiiiiIIIInNoooooOOOOOsSuuuuUUUUyYzZ
  */
 (function(){
     if(String.prototype.ignoreAccent) return;
@@ -38,7 +38,7 @@
             str =  Array.prototype.slice.call(this);
         for(i = 0; i<str.length; i++){
             currentCharCode = str[i].charCodeAt(0);
-            if(currentCharCode < 192) continue;
+            if(currentCharCode < 192) continue; /* letter from standard alphabet - no reason to test further */
             for(char in AccentCharCodesTable){
                 if(AccentCharCodesTable.hasOwnProperty(char)){
                     if(currentCharCode >= AccentCharCodesTable[char][0] && currentCharCode <= AccentCharCodesTable[char][1]){
@@ -51,5 +51,3 @@
         return str.join("");
     }
 })();
-
-console.log("áàâäåÁÃÄÅÀÂçÇêéëèÊËÉÈïíîìÍÌÎÏñÑôöòõóÓÔÕÖÒšŠúüûùÙÚÜÛýÝžŽ".ignoreAccent() == "aaaaaAAAAAAcCeeeeEEEEiiiiIIIInNoooooOOOOOsSuuuuUUUUyYzZ");
