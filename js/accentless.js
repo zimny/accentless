@@ -35,7 +35,8 @@
         var i,
             currentCharCode,
             char,
-            str =  Array.prototype.slice.call(this);
+            /*str =  Array.prototype.slice.call(this,0) IE incompatible*/
+            str = this.split("");
         for(i = 0; i<str.length; i++){
             currentCharCode = str[i].charCodeAt(0);
             if(currentCharCode < 192) continue; /* letter from standard alphabet - no reason to test further */
